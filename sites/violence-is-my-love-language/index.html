@@ -337,6 +337,9 @@
       .hero .project-strip{margin-top:62px}
     }
 
+.frame .film-cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.78;filter:saturate(.9)}
+.frame::before,.frame::after{z-index:2}
+.frame .frame-inner{z-index:3;background:linear-gradient(90deg,rgba(0,0,0,.55),transparent 80%);text-shadow:0 2px 12px rgba(0,0,0,.8)}
   </style>
 </head>
 <body>
@@ -362,22 +365,13 @@
           <div class="hanging-frame">01</div><div class="hanging-frame">02</div><div class="hanging-frame">03</div>
         </div>
         <div class="hero-content">
-          <div class="leader">AN EDITOR'S NOTE <span class="leader-sep">/</span> CTPR 486</div>
+          <div class="leader">AN EDITOR'S NOTE <span class="leader-sep">/</span> CTPR 546</div>
           <h1 class="pitch-film-title" id="hero-film-title">Violence Is My Love Language</h1>
           <svg class="hand-underline" viewBox="0 0 350 32" aria-hidden="true"><path d="M2 22 Q 74 12 140 18 T 348 12" fill="none" stroke="#b85b4d" stroke-width="2.2" stroke-linecap="round"/><path d="M52 28 Q 150 21 294 23" fill="none" stroke="#b85b4d" stroke-width="1" opacity=".65"/></svg>
           <div class="hero-signature"><p class="hero-motto">Love is the only serious subject.</p><p class="hero-subtitle">And I love finding its rhythm.</p></div>
           <span class="sketch-star" aria-hidden="true">✳</span>
         </div>
-        <div class="project-strip">
-          <div class="project-strip-head"><span>PROJECT PITCHES <span class="warm">/</span> 01–03</span><span>THREE STORIES, THREE RHYTHMS</span></div>
-          <div class="project-grid" role="tablist" aria-label="Select film pitch">
-            <button type="button" class="project-frame film-tab active" role="tab" data-target="bunny" aria-selected="true"><span class="frame-art frame-bunny" aria-hidden="true"><span class="frame-no">01 / 35MM</span><span class="frame-image-bunny">♧</span></span><span class="project-title">The Bunny-Man <span>↗</span></span></button>
-            <button type="button" class="project-frame film-tab" role="tab" data-target="diagnosed" aria-selected="false"><span class="frame-art frame-diagnosed" aria-hidden="true"><span class="frame-no">02 / 35MM</span><span class="frame-image-diagnosed">◌</span></span><span class="project-title">Diagnosed! <span>↗</span></span></button>
-            <button type="button" class="project-frame film-tab" role="tab" data-target="violence" aria-selected="false"><span class="frame-art frame-violence" aria-hidden="true"><span class="frame-no">03 / 35MM</span><span class="frame-image-violence">✳</span></span><span class="project-title">Violence Is My Love Language <span>↗</span></span></button>
-          </div>
-        </div>
-      </div>
-    </section>
+            </section>
 
     <section class="section letter" id="letter">
       <div>
@@ -468,7 +462,7 @@
     };
     function esc(t){return String(t).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;')}
     function render(which){
-      if(!variants[which]) which='bunny';
+      if(!variants[which]) which='violence';
       const v=variants[which];
       document.querySelectorAll('.film-tab').forEach(b=>{const on=b.dataset.target===which; b.classList.toggle('active',on); b.setAttribute('aria-selected', on?'true':'false');});
       document.getElementById('hero-film-title').textContent=v.title;
@@ -479,9 +473,9 @@
       document.getElementById('letter-foot').textContent=v.foot;
       document.getElementById('workgrid').innerHTML = v.order.map((key,i)=>{
         const f=films[key], n=String(i+1).padStart(2,'0');
-        return `<article class="work ${i===0?'featured':''}"><div class="frame ${f.style}"><div class="frame-inner"><div class="kicker">${esc(f.label)}</div><div class="art-title">${esc(f.title)}</div><div class="playrow"><span class="glyph">${esc(f.symbol)}</span><button type="button" class="play" data-view="${key}">Play Film</button></div></div></div><div class="work-meta"><div class="num">${n}</div><div class="meta"><h3>${esc(f.title)}</h3><div class="role">${esc(f.role)}</div><p class="desc">${esc(f.desc)}</p><div class="film-awards"><div class="awards-head">Awards & Selections</div>${(f.awards||[]).map(a=>`<div class="award-item">${esc(a)}</div>`).join('')}</div><div class="links"><a href="${f.url}" target="_blank" rel="noopener noreferrer">${key==='rainbow'?'Watch Trailer':'Watch Film'} ↗</a>${f.extra?`<a href="${f.extra.url}" target="_blank" rel="noopener noreferrer">${f.extra.title} ↗</a>`:''}</div></div></div></article>`;
+        return `<article class="work ${i===0?'featured':''}"><div class="frame ${f.style}"><img class="film-cover" src="https://vumbnail.com/${f.video}.jpg" alt="Still from ${esc(f.title)}" loading="lazy"><div class="frame-inner"><div class="kicker">${esc(f.label)}</div><div class="art-title">${esc(f.title)}</div><div class="playrow"><span class="glyph">${esc(f.symbol)}</span><button type="button" class="play" data-view="${key}">Play Film</button></div></div></div><div class="work-meta"><div class="num">${n}</div><div class="meta"><h3>${esc(f.title)}</h3><div class="role">${esc(f.role)}</div><p class="desc">${esc(f.desc)}</p><div class="film-awards"><div class="awards-head">Awards & Selections</div>${(f.awards||[]).map(a=>`<div class="award-item">${esc(a)}</div>`).join('')}</div><div class="links"><a href="${f.url}" target="_blank" rel="noopener noreferrer">${key==='rainbow'?'Watch Trailer':'Watch Film'} ↗</a>${f.extra?`<a href="${f.extra.url}" target="_blank" rel="noopener noreferrer">${f.extra.title} ↗</a>`:''}</div></div></div></article>`;
       }).join('');
-      try{const u=new URL(window.location.href);u.searchParams.set('film',which);history.replaceState(null,'',u)}catch(e){}
+
     }
     const dlg=document.getElementById('video-dialog');
     const frame=document.getElementById('video-frame');
@@ -498,7 +492,7 @@
     document.getElementById('close-video').addEventListener('click', closeVideo);
     dlg.addEventListener('click', e=>{if(e.target===dlg) closeVideo();});
     dlg.addEventListener('close', ()=>frame.innerHTML='');
-    const initial=new URLSearchParams(location.search).get('film'); render(initial||document.documentElement.dataset.defaultFilm||'bunny');
+    render('violence');
   </script>
 </body>
 </html>

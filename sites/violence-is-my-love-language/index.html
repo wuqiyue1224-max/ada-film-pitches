@@ -120,7 +120,7 @@
     .work{background:linear-gradient(180deg,#11110f,#0d0d0b); border:1px solid var(--line)}
     .work.featured{grid-column:1/-1}
     .frame{
-      position:relative; background:#1a1a16; min-height:270px; overflow:hidden; border-bottom:1px solid var(--line);
+      position:relative; background:#1a1a16; min-height:270px; overflow:hidden; border-bottom:1px solid var(--line); background-size:cover; background-position:center; background-repeat:no-repeat;
       padding:18px 32px 18px 54px;
     }
     .featured .frame{min-height:360px}
@@ -134,7 +134,7 @@
       background:repeating-linear-gradient(to bottom, transparent 0 10px, rgba(245,241,232,.96) 10px 24px, transparent 24px 34px);
       opacity:.95;
     }
-    .frame-inner{position:relative; height:100%; min-height:inherit; border:1px solid rgba(255,255,255,.05); display:flex; flex-direction:column; justify-content:space-between; padding:18px 22px; z-index:1}
+    .frame-inner{position:relative; height:100%; min-height:inherit; border:1px solid rgba(255,255,255,.05); display:flex; flex-direction:column; justify-content:space-between; padding:18px 22px; z-index:1; background:linear-gradient(180deg, rgba(9,9,8,.04) 0%, rgba(9,9,8,.14) 48%, rgba(9,9,8,.64) 100%)}
     .kicker{font:10px var(--mono); text-transform:uppercase; letter-spacing:.16em; color:#e7e0d5}
     .art-title{font:500 clamp(34px,4.7vw,78px)/.93 var(--serif); letter-spacing:-.05em; max-width:640px}
     .featured .art-title{font-size:clamp(56px,7vw,96px)}
@@ -262,7 +262,7 @@
     .foot{color:#5c5044}
     .underline{background:linear-gradient(transparent 72%,rgba(157,73,58,.28) 72%)}
     .work{border-color:#342922;background:#100f0c}
-    .frame{filter:saturate(.78)}
+    .frame{filter:none}
     .works-top h2,.letter-title,.about h2{font-family:var(--serif)}
     .about-card{background:#12100f;border-color:#312720}
     @media(max-width:980px){
@@ -337,10 +337,30 @@
       .hero .project-strip{margin-top:62px}
     }
 
-.frame .film-cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.78;filter:saturate(.9)}
-.frame::before,.frame::after{z-index:2}
-.frame .frame-inner{z-index:3;background:linear-gradient(90deg,rgba(0,0,0,.55),transparent 80%);text-shadow:0 2px 12px rgba(0,0,0,.8)}
-  </style>
+  
+    /* V6 — Authentic stills supplied by the filmmaker. Keep the frame itself unobstructed. */
+    .work .frame { background-size:cover; background-position:center center; background-repeat:no-repeat; filter:none; }
+    .work .frame-inner { background:linear-gradient(180deg,rgba(7,7,7,.43) 0%,rgba(7,7,7,.02) 24%,rgba(7,7,7,.02) 74%,rgba(7,7,7,.40) 100%); }
+    .work .frame-inner .art-title { display:none; }
+    .work .frame-inner .glyph { display:none; }
+    .work .frame.monkey { background-position:50% 44%; }
+    .work .frame.rainbow { background-position:50% 42%; }
+    .work .frame.love { background-position:50% 49%; }
+    .work .frame.thief { background-position:50% 44%; }
+    .work .frame.bird { background-position:50% 42%; }
+    .work .frame.nova { background-position:50% 41%; }
+
+  
+    /* V7: one pitch per page, no project selector */
+    .hero{min-height:600px;display:flex;flex-direction:column;justify-content:space-between;gap:70px}
+    .hero-scroll{position:relative;z-index:4;width:max-content;max-width:100%;display:flex;align-items:center;gap:28px;
+      border-top:1px solid rgba(207,135,111,.45);padding:14px 12px 5px 0;color:#c8b1a0;
+      font:11px/1.5 var(--mono);letter-spacing:.15em;transition:color .2s ease}
+    .hero-scroll:hover{color:#f3e3d1}
+    .hero-scroll span{font-size:18px;color:#cd8168}
+    @media(max-width:980px){.hero{min-height:570px;gap:56px}}
+    @media(max-width:700px){.hero{min-height:570px;gap:48px}}
+    </style>
 </head>
 <body>
   <div class="shell">
@@ -371,7 +391,9 @@
           <div class="hero-signature"><p class="hero-motto">Love is the only serious subject.</p><p class="hero-subtitle">And I love finding its rhythm.</p></div>
           <span class="sketch-star" aria-hidden="true">✳</span>
         </div>
-            </section>
+        <a class="hero-scroll" href="#letter">A NOTE TO YOUR FILM <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
 
     <section class="section letter" id="letter">
       <div>
@@ -391,7 +413,7 @@
           <div class="label">02 / Selected Works</div>
           <h2>Stories I’ve touched.</h2>
         </div>
-        <div class="side">Six films.<br>Reordered for each story.<br>Curated by feeling, not chronology.</div>
+        
       </div>
       <div class="workgrid" id="workgrid"></div>
     </section>
@@ -403,8 +425,8 @@
       </div>
       <div class="about-card">
         <p>I’m <strong>Ada Qiyue Wu</strong>, an MFA filmmaker at the <strong>USC School of Cinematic Arts</strong>. I come to the editing room with a director’s curiosity, an editor’s patience, and a genuine affection for emotional detail.</p>
-        <p><strong>Editing has been the thread running through my film education and practice.</strong> I began in the inaugural Editing Director cohort at the <strong>Communication University of Zhejiang</strong> and kept developing my craft through shorts, documentaries, and feature-film post-production. Before choosing USC, I received formal offers from the <strong>film editing programs at AFI Conservatory and Chapman University</strong>. In my MFA training, I've studied under <strong>Duwayne Dunham</strong>, and my mentor is <strong>Bartholomew Burcham</strong>.</p>
-        <p>Across narrative shorts, feature post-production, sound, and visual effects, I’m most interested in helping a film become more itself — clearer in feeling, sharper in rhythm, and more specific in voice.</p>
+        <p><strong>Editing has been the thread running through my film education and practice.</strong> I began in the inaugural Editing Director cohort at the <strong>Communication University of Zhejiang</strong> and kept developing my craft through shorts, documentaries, and feature-film post-production. Before coming to USC, I received formal offers from the <strong>film editing programs at AFI Conservatory and Chapman University</strong>. In my MFA training, I study with <strong>Duwayne Dunham</strong>, and my mentor is <strong>Bartholomew Burcham</strong>.</p>
+        <p>What I love most about editing is finding the most sincere feeling inside a story and shaping the clearest, strongest version of it on screen.</p>
         <div class="chips">
           <span class="chip">AVID MEDIA COMPOSER</span>
           <span class="chip">PREMIERE PRO</span>
@@ -431,40 +453,24 @@
   <script>
     const films = {
       monkey:{title:'The Monkey from Stone',style:'monkey',role:'Writer · Director · Editor · Sound Designer',desc:'A child’s first rebellion, told with tenderness and a little trouble.',awards:["Special Mention — Idromeno International Film Festival (2025)", "Finalist — USA Film Festival (2025)", "Official Selection — Lift-Off Global Network"],symbol:'✳',url:'https://vimeo.com/1031441754/f3f3e30f92',video:'1031441754',hash:'f3f3e30f92',label:'Narrative Short · 2025'},
-      rainbow:{title:'Rainbow',style:'rainbow',role:'Post-Production Director · Edit Director · VFX Director',desc:'In wartime, a female teacher leaves behind her family to answer a larger calling: saving her country.',awards:["Official Selection, Best Main Melody Film Section — 5th Asia International Film Festival", "Outstanding Feature Film Unit — 18th China Youth Microfilm Competition", "Sound Unit Award — Chinese University Film & Television Association", "Recommended Screening — National University Film & TV Works Joint Exhibition"],symbol:'◒',url:'https://vimeo.com/1184442561/38ecfcbb03',video:'1184442561',hash:'38ecfcbb03',label:'Feature Film · Trailer'},
-      love:{title:'Love in the Time of Cholera',style:'love',role:'Editor',desc:'After the pandemic, what becomes of the love stories that were left suspended in time?',awards:["Second Prize, 72-Hour Local Creation — College Student Film Season", "Outstanding Work — Lighting Up China's Beauty", "Shortlisted — 13th Zhejiang University Student Audiovisual Image Innovation Competition"],symbol:'⌁',url:'https://vimeo.com/1184442052/1079fb8209',video:'1184442052',hash:'1079fb8209',label:'Narrative Short · Full Film'},
+      rainbow:{title:'Rainbow',style:'rainbow',role:'Post-Production Director · Edit Director · VFX Director',desc:'A female teacher in wartime leaves home behind to save her country.',awards:["Official Selection, Best Main Melody Film Section — 5th Asia International Film Festival", "Outstanding Feature Film Unit — 18th China Youth Microfilm Competition", "Sound Unit Award — Chinese University Film & Television Association", "Recommended Screening — National University Film & TV Works Joint Exhibition"],symbol:'◒',url:'https://vimeo.com/1184442561/38ecfcbb03',video:'1184442561',hash:'38ecfcbb03',label:'Feature Film · Trailer'},
+      love:{title:'Love in the Time of Cholera',style:'love',role:'Editor',desc:'After the pandemic, what happens to the love stories that were left suspended in time?',awards:["Second Prize, 72-Hour Local Creation — College Student Film Season", "Outstanding Work — Lighting Up China's Beauty", "Shortlisted — 13th Zhejiang University Student Audiovisual Image Innovation Competition"],symbol:'⌁',url:'https://vimeo.com/1184442052/1079fb8209',video:'1184442052',hash:'1079fb8209',label:'Narrative Short · Full Film'},
       thief:{title:'Thief',style:'thief',role:'Writer · Director · Editor · Sound Designer',desc:'A break-in, a secret, and the pleasure of revealing just enough.',awards:["Selected — New York Lift-Off Film Festival", "Selected — Tokyo Lift-Off Film Festival", "Selected — Los Angeles Lift-Off Film Festival"],symbol:'✕',url:'https://vimeo.com/1045028345/da99aa8e7f',video:'1045028345',hash:'da99aa8e7f',label:'Narrative Short · Full Film'},
-      bird:{title:'The Thorn Bird',style:'bird',role:'Edit Director',desc:'A family of three built on a lie — and a genuine bond of mutual support between a mother and daughter.',awards:["Wildfire Special Mention — Light My Fire Young Film Festival (2025)"],symbol:'❦',url:'https://vimeo.com/1210134032/fa008d4a8c',video:'1210134032',hash:'fa008d4a8c',label:'Narrative Short · Full Film',extra:{title:'Watch Trailer',url:'https://vimeo.com/1184443718/9c1405fb90'}},
+      bird:{title:'The Thorn Bird',style:'bird',role:'Edit Director',desc:'A false family of three, and a real bond of mutual support between mother and daughter.',awards:["Wildfire Special Mention — Light My Fire Young Film Festival (2025)"],symbol:'❦',url:'https://vimeo.com/1210134032/fa008d4a8c',video:'1210134032',hash:'fa008d4a8c',label:'Narrative Short · Full Film',extra:{title:'Watch Trailer',url:'https://vimeo.com/1184443718/9c1405fb90'}},
       nova:{title:'NOVA',style:'nova',role:'Writer · Director · VFX Supervisor',desc:'A little supernatural story about memory, family, and love beyond what we can see.',awards:["Winner — Hollywood Best Indie Film Awards (2026)", "Official Selection — Cinema Royale: Paris Edition (2026)"],symbol:'✧',url:'https://vimeo.com/1246790297/c68473e81a',video:'1246790297',hash:'c68473e81a',label:'A Director’s Perspective · Full Film'}
     };
-    const variants = {
-      bunny:{
-        title:'The Bunny-Man',
-        heading:'Who is watching<br>whom?',
-        statement:'Chris spends the night guarding a closet. Susan spends it guarding him. I’m drawn to the moment that reverses their roles: <span class="underline">the monster stops moving, but Chris is suddenly afraid of what he sees in his mother.</span>',
-        foot:'As an editor, I’d let that shift of attention change the rhythm — from survival to the quieter shock that follows. Their embrace is a release, but the last closed door reminds us that violence can end without fear disappearing.',
-        order:['monkey','rainbow','love','thief','bird','nova']
-      },
-      diagnosed:{
-        title:'Diagnosed!',
-        heading:'The body<br>interrupts.',
-        statement:'Kate’s pain has its own timing. It cuts into a joke at the store, a presentation at work, and finally a meeting she never reaches. <span class="underline">Her body keeps interrupting the life she is trying so hard to perform.</span>',
-        foot:'That collision between outward composure and private experience is the rhythm I’d want to explore. I love how the golden light returns: once for the excitement of her first period, then for the complicated relief of finally having her pain named.',
-        order:['monkey','thief','rainbow','bird','love','nova']
-      },
-      violence:{
-        title:'Violence Is My Love Language',
-        heading:'You can’t cut<br>someone into love.',
-        statement:'Norman edits Lena’s life like a timeline: bad coffee, gone. A creepy stranger, gone. A cruel boss, gone. Each murder is an impeccably efficient deletion. <span class="underline">But her freedom to choose is the one thing he cannot edit away.</span>',
-        foot:'I’m excited by the contrast between his surgical precision and the uncontrollable messiness of affection. The comedy can be beautifully exact, while the final “Mission resumed” leaves a little chill: nothing about him has actually changed.',
-        order:['monkey','bird','thief','love','rainbow','nova']
-      }
+
+    const pitch = {
+      title:'Violence Is My Love Language',
+      heading:'You can’t cut<br>someone into love.',
+      statement:'Norman edits Lena’s life like a timeline: bad coffee, gone. A creepy stranger, gone. A cruel boss, gone. Each murder is an impeccably efficient deletion. <span class="underline">But her freedom to choose is the one thing he cannot edit away.</span>',
+      foot:'I’m excited by the contrast between his surgical precision and the uncontrollable messiness of affection. The comedy can be beautifully exact, while the final “Mission resumed” leaves a little chill: nothing about him has actually changed.',
+      order:['monkey','bird','thief','love','rainbow','nova']
     };
     function esc(t){return String(t).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;')}
-    function render(which){
-      if(!variants[which]) which='violence';
-      const v=variants[which];
-      document.querySelectorAll('.film-tab').forEach(b=>{const on=b.dataset.target===which; b.classList.toggle('active',on); b.setAttribute('aria-selected', on?'true':'false');});
+    function render(){
+      const which='violence';
+      const v=pitch;
       document.getElementById('hero-film-title').textContent=v.title;
       document.querySelector('.hero').dataset.film=which;
       document.title=v.title+' · Ada Qiyue Wu — Editor Pitch';
@@ -473,13 +479,11 @@
       document.getElementById('letter-foot').textContent=v.foot;
       document.getElementById('workgrid').innerHTML = v.order.map((key,i)=>{
         const f=films[key], n=String(i+1).padStart(2,'0');
-        return `<article class="work ${i===0?'featured':''}"><div class="frame ${f.style}"><img class="film-cover" src="https://vumbnail.com/${f.video}.jpg" alt="Still from ${esc(f.title)}" loading="lazy"><div class="frame-inner"><div class="kicker">${esc(f.label)}</div><div class="art-title">${esc(f.title)}</div><div class="playrow"><span class="glyph">${esc(f.symbol)}</span><button type="button" class="play" data-view="${key}">Play Film</button></div></div></div><div class="work-meta"><div class="num">${n}</div><div class="meta"><h3>${esc(f.title)}</h3><div class="role">${esc(f.role)}</div><p class="desc">${esc(f.desc)}</p><div class="film-awards"><div class="awards-head">Awards & Selections</div>${(f.awards||[]).map(a=>`<div class="award-item">${esc(a)}</div>`).join('')}</div><div class="links"><a href="${f.url}" target="_blank" rel="noopener noreferrer">${key==='rainbow'?'Watch Trailer':'Watch Film'} ↗</a>${f.extra?`<a href="${f.extra.url}" target="_blank" rel="noopener noreferrer">${f.extra.title} ↗</a>`:''}</div></div></div></article>`;
+        return `<article class="work ${i===0?'featured':''}"><div class="frame ${f.style}" style="background-image:linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.1)), var(--cover-${key}, none)"><div class="frame-inner"><div class="kicker">${esc(f.label)}</div><div class="art-title">${esc(f.title)}</div><div class="playrow"><span class="glyph">${esc(f.symbol)}</span><button type="button" class="play" data-view="${key}">Play Film</button></div></div></div><div class="work-meta"><div class="num">${n}</div><div class="meta"><h3>${esc(f.title)}</h3><div class="role">${esc(f.role)}</div><p class="desc">${esc(f.desc)}</p><div class="film-awards"><div class="awards-head">Awards & Selections</div>${(f.awards||[]).map(a=>`<div class="award-item">${esc(a)}</div>`).join('')}</div><div class="links"><a href="${f.url}" target="_blank" rel="noopener noreferrer">${key==='rainbow'?'Watch Trailer':'Watch Film'} ↗</a>${f.extra?`<a href="${f.extra.url}" target="_blank" rel="noopener noreferrer">${f.extra.title} ↗</a>`:''}</div></div></div></article>`;
       }).join('');
-
     }
     const dlg=document.getElementById('video-dialog');
     const frame=document.getElementById('video-frame');
-    document.querySelectorAll('.film-tab').forEach(b=>b.addEventListener('click',()=>render(b.dataset.target)));
     document.getElementById('workgrid').addEventListener('click', e=>{
       const b=e.target.closest('[data-view]'); if(!b) return;
       const f=films[b.dataset.view];
@@ -492,7 +496,20 @@
     document.getElementById('close-video').addEventListener('click', closeVideo);
     dlg.addEventListener('click', e=>{if(e.target===dlg) closeVideo();});
     dlg.addEventListener('close', ()=>frame.innerHTML='');
-    render('violence');
+
+    async function loadPortfolioCovers() {
+      // The local asset holds the six original JPEGs from the portfolio archive.
+      const response = await fetch('./portfolio-covers-0abc28c6.dat');
+      if (!response.ok) throw new Error('Portfolio covers could not be loaded.');
+      const archive = await response.text();
+      const coverEntries = /^\s*(\w+):\{title:[^\n]*?\bcover:'(data:image\/jpeg;base64,[A-Za-z0-9+/=]+)'/gm;
+      const grid = document.getElementById('workgrid');
+      for (const [, key, image] of archive.matchAll(coverEntries)) {
+        if (Object.hasOwn(films, key)) grid.style.setProperty('--cover-' + key, 'url("' + image + '")');
+      }
+    }
+    render();
+    loadPortfolioCovers().catch(error => console.error(error));
   </script>
 </body>
 </html>
